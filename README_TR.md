@@ -1,128 +1,127 @@
 Mevcut Diller: [English](README.md) | [Türkçe](README_TR.md)
 
-# 🌻 SunflowerBot: FPGA Tabanlı Otonom Güneş Takip Sistemi
 
-![demo](https://github.com/user-attachments/assets/1536b20f-7956-42f9-8431-87e7970cd9c4)  
-*Şekil 1. SunflowerBot sisteminin gerçek zamanlı çalışma gösterimi*
+# 🔐 FPGA Tabanlı Donanımsal Kriptografik Motor (Eğitimsel)
 
-![Durum](https://img.shields.io/badge/Durum-Tamamlandı-success)
-![Yazılım Dili](https://img.shields.io/badge/Dil-VHDL-blue)
-![Donanım](https://img.shields.io/badge/Donanım-Basys3-orange)
+![Status](https://img.shields.io/badge/Status-Completed-success)
+![Tech](https://img.shields.io/badge/Language-VHDL-blue)
+![Board](https://img.shields.io/badge/Hardware-Basys3-orange)
+![Project Type](https://img.shields.io/badge/Project_Type-Academic_Research-yellow)
+![Security_Level](https://img.shields.io/badge/Security-Educational_Proof_of_Concept-red)
 
 ---
 
 ## 📌 Genel Bakış
 
-SunflowerBot, Basys 3 geliştirme kartı üzerinde yer alan Artix-7 FPGA kullanılarak tasarlanmış, otonom ve heliotropik (güneşe yönelen) bir güneş takip sistemidir. Sistem, iki adet Işığa Bağımlı Direnç (LDR) aracılığıyla ortam ışığını algılayarak bir servo motoru en yüksek ışık yoğunluğuna doğru gerçek zamanlı olarak yönlendirir.
+Bu proje, özel kriptografik ilkelere dayalı bir sistemin FPGA üzerinde gerçekleştirilmesine odaklanmaktadır. Projenin temel amacı; özellikle Doğrusal Olmayan Geri Beslemeli Kaydırma Yazmaçları (NLFSR) ve Dengesiz Feistel Ağları gibi teorik şifreleme mimarilerinin, Register Transfer Level (RTL) seviyesinde fiziksel donanım mantığına dönüştürülmesi sırasında karşılaşılan donanımsal tasarım zorluklarını incelemektir.
 
-Mikrodenetleyici tabanlı çözümlerde görülen sıralı yazılım yürütmenin aksine, bu proje sensör okuma, sinyal işleme ve motor kontrol işlemlerini tamamen donanım seviyesinde ve eşzamanlı olarak gerçekleştirmek üzere FPGA paralelliğinden yararlanmaktadır. Sistem, herhangi bir soft-core işlemciye ihtiyaç duymayan özel bir RTL (Register Transfer Level) mimarisi ile tasarlanmış olup, bu sayede deterministik ve mikrosaniye mertebesinde tepki süreleri elde edilmiştir.
+Yürütmenin yazılım modellerinden Artix-7 FPGA yapısına eşlenmesiyle, bu çalışma kriptografik sistemlerde donanım hızlandırma, boru hatlı paralellik ve gerçek zamanlı saat senkronizasyonu ilkelerini göstermektedir.
 
 ---
 
-## 🛠️ Temel Tasarım Özellikleri
+## 🛠️ Temel Mühendislik Özellikleri
 
-* **⚡ Donanım Hızlandırmalı Kontrol Döngüsü**  
-  Sensör gürültüsünü bastırmak ve servo motorun gereksiz salınım yapmasını önlemek amacıyla 300 birimlik ölü banta sahip bir histerezis karşılaştırıcı uygulanmıştır.
-
-* 📈 Sinyal İşleme Hattı (DSP)  
-  Ham 12-bit XADC verilerini yumuşatmak için özel olarak tasarlanmış Birinci Dereceden IIR (Sonsuz Dürtü Tepkili) Alçak Geçiren Filtre kullanılmaktadır.
-
-* **🖥️ Bare-Metal LCD Sürücüsü**  
-  Harici IP çekirdekleri kullanılmadan, HD44780 LCD protokolü mikrosaniye hassasiyetinde zamanlama gereksinimlerini sağlayan bir Sonlu Durum Makinesi (FSM) ile doğrudan donanımda uygulanmıştır.
-
-* **🎯 Hassas Eyleme Geçirme**  
-  Servo motorun mekanik bileşenlerini korumak amacıyla Slew-Rate (değişim hızı) sınırlamalı, 50 Hz PWM üreteci geliştirilmiştir.
-
-* **🔌 XADC Arayüzü**  
-  Artix-7 FPGA’nın dahili 12-bit XADC modülü, Dinamik Yeniden Yapılandırma Portu (DRP) üzerinden manuel olarak kontrol edilmiştir.
+* **🛡️ Hibrit Kriptografik Mimari**
+  * Akış şifrelerinin hız avantajını, Blok şifrelerin yapısal özellikleriyle birleştiren, Dengesiz Feistel Ağı tabanlı özel bir şifreleme yapısı uygulanmıştır.
+* **🎲 Doğrusal Olmayan Anahtar Üretimi**
+  * Doğrusal kriptoanalize karşı mantık seviyesinde direnç göstermek amacıyla Boolean karışım fonksiyonları kullanan 7-bit NLFSR tasarlanmıştır.
+* **⚡ Asenkron Saat Senkronizasyonu**
+  * 9600 baud hızındaki asenkron UART verisinin 100 MHz sistem saat alanına güvenli şekilde aktarılması için açık saat kapılama ve tamponlama mekanizmaları uygulanmıştır.
+* **👁️ Çoklanmış Telemetri Görselleştirmesi**
+  * Dahili şifreleme durumlarını, paylaşımlı bir veri yolu üzerinden 7-segment göstergelerde sunmak için Zaman Bölüşümlü Çoklama (TDM) kullanan özel bir donanım sürücüsü geliştirilmiştir.
+* **🔄 Tersinir Mantık Çekirdeği**
+  * Feistel özelliği  
+   ($A \oplus B \oplus B = A$)
+    sayesinde, aynı donanım mantık yapısı hem şifreleme hem de çözme modlarında kullanılabilmektedir.
 
 ---
 
 ## ⚙️ Sistem Mimarisi
+*UART arayüzü yalnızca test ve doğrulama amacıyla kullanılmakta olup, kriptografik tasarımın bir parçası değildir.*
 
-![Sistem_Blok_Diyagramı](https://github.com/user-attachments/assets/2a5c269f-cfff-4a3c-bdd9-182989aae2f3)  
-*Şekil 2. SunflowerBot sistem mimarisi*
+Sistem, sürekli çalışan boru hatlı bir veri yolu yapısına sahiptir:
 
-Sistem, tamamen paralel çalışan bir “Algıla – Karar Ver – Eyleme Geç” yapısı üzerine kurulmuştur.
+### 1. Giriş Arayüzü (`UART_RX`)
+* **Protokol:** Standart RS-232 Seri Haberleşme (9600 Baud, 8N1)
+* **Fonksiyon:** PC/Klavye üzerinden gelen seri veriyi paralel 8-bit baytlara dönüştürür
+* **Senkronizasyon:** Şifreleme çekirdeğini tam olarak bir saat çevrimi boyunca tetikleyen bir “Data Valid” darbesi üretir
 
-### 1. Algılama (`xadc_interface.vhd`)
-* **Giriş:** Gerilim bölücü yapılandırmasında iki adet LDR sensörü  
-* **Örnekleme:** XADC primitive’i kullanılarak 12-bit çözünürlükte analog-dijital dönüşüm  
-* **Kontrol:** Tek ADC çekirdeğini iki analog kanal (VAUX6 & VAUX14) arasında paylaştıran 4 durumlu FSM tabanlı sıralayıcı
+### 2. Çekirdek Motor (`Top_Level.vhd`)
+* **Anahtar Üretimi:** NLFSR, doğrusal olmayan geri besleme polinomu ile durumunu günceller
+* **Bölme:** 7-bit ASCII giriş verisi “Anchor” (3 bit) ve “Target” (4 bit) segmentlerine ayrılır
+* **Karıştırma:** Anchor ve anahtar, Boolean karıştırma fonksiyonuna girer ve çıkan sonuç Target ile XOR’lanır
 
-### 2. İşleme (`sensor_compare.vhd`, `pwm_gen.vhd`)
-* **Karşılaştırma:** Sol ve sağ sensörler arasındaki farkın ($\Delta$) hesaplanması  
-* **Filtreleme:**  
-   $y[n] = 0.97 \cdot y[n-1] + 0.03 \cdot x[n]$
-  denklemi ile yüksek frekanslı gürültünün bastırılması  
-* **Karar Mekanizması:** Servo motor yalnızca  
-   $|\Delta| > \text{Threshold}$
-  koşulu sağlandığında hareket ettirilir.
-
-### 3. Eyleme Geçirme (`pwm_gen.vhd`)
-* **PWM Çıkışı:** 50 Hz (20 ms periyot)  
-* **Zaman Çözünürlüğü:** 1 µs (döngü başına 20.000 adım)  
-* **Konum Aralığı:** 0.5 ms ($0^\circ$) – 2.5 ms ($180^\circ$)
-
-### 4. Geri Bildirim (`lcd_controller.vhd`)
-* **Görüntüleme:** Sistem durumu (“SOLA DÖN”, “KİLİTLENDİ”) ve sensör değerleri  
-* **Dönüştürme:** Gerçek zamanlı İkili → BCD → ASCII dönüşüm mantığı
+### 3. Çıkış Görselleştirme (`TDM_Driver`)
+* **Teknik:** Görsel Kalıcılık (Persistence of Vision)
+* **Mekanizma:** 4 haneli anotlar 250 Hz frekansla taranarak tüm göstergelerin aynı anda aktif olduğu izlenimi oluşturulur; böylece pin ve güç tüketimi azaltılır
 
 ---
 
-## 💻 Teknik Uygulama Detayları
+## 💻 Teknik Gerçekleme Detayları
 
-### 1. Dijital Sinyal İşleme (DSP)
+#### 1. Feistel Ağı (Difüzyon)
+Tersinirliği koruyarak karmaşık ve terslenemez karıştırma fonksiyonlarının kullanılabilmesi için Feistel yapısı tercih edilmiştir.
 
-LDR tabanlı analog ölçümlerde karşılaşılan elektriksel gürültüyü harici filtre elemanları kullanmadan bastırmak amacıyla FPGA içinde Birinci Dereceden IIR filtre uygulanmıştır:
+* **Mantık:**
+  $$Target_{new} = Target_{old} \oplus F(Anchor, Key)$$
+  $$Anchor_{new} = Anchor_{old}$$
+* **Donanım Verimliliği:** Anchor korunarak, çözme işlemi aynı mantığın tekrar uygulanmasıyla gerçekleştirilir. Bu yaklaşım, ayrı şifreleme/çözme devrelerine kıyasla FPGA LUT kullanımını yaklaşık %40 oranında azaltmıştır.
 
-$$y[n] = \frac{31 \cdot y[n-1] + x[n]}{32}$$
+---
 
-* **Donanım Optimizasyonu:** Bölme işlemi, DSP dilimi tüketmeden bit kaydırma (`>>5`) ile gerçekleştirilmiştir.  
-* **Titreşim Önleme:** Programlanabilir histerezis eşiği, küçük ışık farklarında servo motorun kararsız davranmasını engeller.
+#### 2. Doğrusal Olmayan Geri Beslemeli Kaydırma Yazmacı (Confusion)
+Standart LFSR yapıları doğrusal cebir tabanlı saldırılara açıktır. Bu projede anahtar üretici NLFSR yapısına yükseltilmiştir.
 
-### 2. Servo Kontrolü ve Slew-Rate Sınırlama
+* **Yükseltme:** XOR tap’leri yerine AND/OR kapıları içeren geri besleme yolları kullanılmıştır
+* **Matematiksel Sonuç:** Üretilen anahtar dizisinin doğrusal karmaşıklığı artırılmış, başlangıç durumu bilinmeden tahmin edilmesi zorlaştırılmıştır
 
-Ani konum değişimlerinin neden olduğu mekanik stresleri azaltmak için özel bir Soft-Start (Yumuşak Başlangıç) rampa denetleyicisi geliştirilmiştir.
+---
 
-* `current_pos`, `target_pos` değerine doğru her 15 µs'de yalnızca bir adım ilerler.  
-* Bu yapı, pürüzsüz ve mekanik açıdan güvenli bir hareket profili sağlar.
+#### 3. Donanım Seviyesinde Senkronizasyon
+Proje, asenkron seri haberleşmeden senkron FPGA saat alanına geçiş içermektedir.
 
-### 3. Özel LCD Sürücüsü (HD44780)
+* **Çözüm:** “Data Valid” bayrak sistemi uygulanmıştır
+* **Çalışma:** UART modülü `o_RX_DV` sinyalini yükselttiğinde şifreleme mantığı tek bir 100 MHz saat çevriminde çalışır; veri kaybı veya çift işleme engellenir
 
-![State_Transition_Table](https://github.com/user-attachments/assets/f2113290-5615-4d34-af94-b5d291377a13)  
-*Şekil 3. LCD FSM durum geçiş diyagramı*
+---
 
-* **FSM Yapısı:** Mealy tipi durum makinesi  
-* **Zamanlama:** 50 µs kurulum süresi, 2 ms komut yürütme gecikmesi  
-* **Veri Dönüşümü:** Harici lookup table yerine gerçek zamanlı ASCII üretimi
+## 📈 Tasarım Evrimi
 
-### 4. XADC Arayüzleme
+Proje, teorik mantık tasarımından fiziksel donanım uygulamasına doğru aşamalı olarak geliştirilmiştir.
 
-XADC’nin otomatik sıralayıcısı bypass edilerek, DRP üzerinden tamamen deterministik bir manuel sıralama yapılmıştır.
-
-* **Kanal Adresleri:** `0x16` (VAUX6), `0x1E` (VAUX14)  
-* **Kontrol:** `EOC` sinyali ile dönüşüm senkronizasyonu  
-* **Çözünürlük:** 0–4095 aralığında tam 12-bit ölçüm hassasiyeti
+| Aşama | Mimari | Temel Mühendislik Kazanımı |
+| :--- | :--- | :--- |
+| **I** | **Doğrusal Akış** | 4-bit LFSR ile temel XOR şifreleme doğrulandı |
+| **II** | **Permütasyon** | Bit konumlarını karıştırmak için P-Box eklendi |
+| **III** | **ASCII Genişleme** | Tam metin desteği için 7-bit veri yolu |
+| **IV** | **Doğrusal Olmayan Çekirdek** | LFSR → NLFSR geçişi |
+| **V** | **Feistel Ağı** | Tersinir blok mimarisine geçiş |
+| **VI** | **FPGA Uyarlaması** | VHDL sentezi, UART ve TDM entegrasyonu |
 
 ---
 
 ## 🔌 Donanım Pin Bağlantıları (Basys 3)
 
-| Bileşen | Sinyal | FPGA Pini | Açıklama |
-|------|------|---------|---------|
-| Sistem | `clk` | W5 | 100 MHz Dahili Saat |
-| Sensör (Sol) | `vauxp6/vauxn6` | J3/K3 | Sol LDR |
-| Sensör (Sağ) | `vauxp14/vauxn14` | L3/M3 | Sağ LDR |
-| Servo | `servo_pwm` | A14 | PWM Çıkışı |
-| LCD | `lcd_rs` | A16 | Register Select |
-| LCD | `lcd_en` | B15 | Enable |
-| LCD | `lcd_data[0–7]` | K17–R18 | Veri Yolu |
+| Bileşen | Sinyal Adı | FPGA Pini | Açıklama |
+| :--- | :--- | :--- | :--- |
+| **Sistem** | `CLK` | W5 | 100 MHz Dahili Saat |
+| **UART RX** | `RsRx` | B18 | Seri Veri Girişi (USB) |
+| **UART TX** | `RsTx` | A18 | Seri Veri Çıkışı (USB) |
+| **LED’ler** | `led[0-6]` | U16...U19 | İkili Şifreli Veri |
+| **7-Seg Anot** | `an[0-3]` | U2...W4 | Hane Seçimi (Aktif Düşük) |
+| **7-Seg Katot** | `seg[0-6]` | W7...U7 | Segment Verisi (A–G) |
+
+---
+
+⚠️ **Uyarı:**  
+Bu proje, kriptografik ilkelerin donanım seviyesinde uygulanmasını inceleyen araştırma amaçlı bir çalışmadır. NLFSR ve Feistel ağlarının mantığını göstermektedir ancak üretim seviyesinde güvenlik için denetlenmiş veya sertifikalandırılmış değildir.
 
 ---
 
 ## 🎥 Gösterim
 
-[▶️ Tam Mühendislik Analizini YouTube’da İzleyin](https://youtu.be/HuF9bkv2JE8)
+![Comp 1](https://github.com/user-attachments/assets/81680fa6-209f-497b-b98d-d26a630c2d0d)
+
+![Comp 2](https://github.com/user-attachments/assets/718df52b-36e7-4e34-ab30-cfd52f78b724)
 
 ---
