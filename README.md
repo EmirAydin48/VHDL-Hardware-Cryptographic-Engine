@@ -35,6 +35,7 @@ By mapping execution from software models to the Artix-7 FPGA fabric, this proje
 
 ## ⚙️ System Architecture
 *The UART interface is used solely as a test and validation input mechanism and is not part of the cryptographic design itself.*
+
 The system operates as a continuous pipelined data path:
 
 ### 1. Input Interface (`UART_RX`)
@@ -64,7 +65,7 @@ To allow for complex, non-reversible mixing functions while maintaining the abil
 
 #### 2. Non-Linear Feedback Shift Register (Confusion)
 Standard LFSRs are vulnerable to linear algebra attacks. I upgraded the key generator to an NLFSR.
-* **The Upgrade:** Instead of simple XOR taps, I introduced **AND/OR gates** into the feedback loop.
+* **The Upgrade:** Instead of simple XOR taps, I introduced AND/OR gates into the feedback loop.
 * **Mathematical Consequence:** This increases the linear complexity of the keystream, making the cipher significantly harder to predict without knowing the initial seed state.
 
 #### 3. Hardware-Level Synchronization
@@ -80,11 +81,11 @@ This project was developed through an iterative engineering process, moving from
 | Phase | Architecture | Key Engineering Milestone |
 | :--- | :--- | :--- |
 | **I** | **Linear Stream** | Validated basic XOR encryption using a 4-bit Linear Feedback Shift Register (LFSR). |
-| **II** | **Permutation** | Introduced a **P-Box** (Permutation Layer) to shuffle bit positions and break spatial correlation. |
-| **III** | **ASCII Scale-Up** | Expanded bus width to **7-bit** to support full text encryption; added keyboard buffering. |
-| **IV** | **Non-Linear Core** | Replaced the linear generator with an **NLFSR** to resist linear cryptanalysis. |
-| **V** | **Feistel Net** | Migrated to a **Feistel Block Architecture**, allowing for complex non-invertible mixing functions. |
-| **VI** | **FPGA Port** | Synthesized the design to **VHDL**, integrated **UART**, and implemented **Display Multiplexing**. |
+| **II** | **Permutation** | Introduced a P-Box (Permutation Layer) to shuffle bit positions and break spatial correlation. |
+| **III** | **ASCII Scale-Up** | Expanded bus width to 7-bit to support full text encryption; added keyboard buffering. |
+| **IV** | **Non-Linear Core** | Replaced the linear generator with an NLFSR to resist linear cryptanalysis. |
+| **V** | **Feistel Net** | Migrated to a Feistel Block Architecture**, allowing for complex non-invertible mixing functions. |
+| **VI** | **FPGA Port** | Synthesized the design to VHDL, integrated UART, and implemented Display Multiplexing. |
 
 ---
 
@@ -108,7 +109,7 @@ This project was developed through an iterative engineering process, moving from
 ## 🎥 Demonstration
 ![Comp 1](https://github.com/user-attachments/assets/81680fa6-209f-497b-b98d-d26a630c2d0d)
 
-![Comp 2](https://github.com/user-attachments/assets/834bc50d-6bb7-4a49-a1fb-326000c9bb4c)
+![Comp 2](https://github.com/user-attachments/assets/718df52b-36e7-4e34-ab30-cfd52f78b724)
 
 
 ---
