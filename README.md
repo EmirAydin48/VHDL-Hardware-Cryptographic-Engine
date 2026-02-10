@@ -14,7 +14,7 @@ Available Languages: [English](README.md) | [Türkçe](README_TR.md)
 
 This project focuses on the FPGA-based implementation of custom cryptographic primitives. The primary goal was to explore the hardware design challenges involved in translating theoretical cipher architectures—specifically Non-Linear Feedback Shift Registers (NLFSR) and Unbalanced Feistel Networks—into physical Register Transfer Level (RTL) logic.
 
-By moving execution from software to the Artix-7 FPGA fabric, this project demonstrates the principles of hardware acceleration, pipeline parallelism, and real-time clock synchronization in cryptographic systems.
+By mapping execution from software models to the Artix-7 FPGA fabric, this project demonstrates the principles of hardware acceleration, pipeline parallelism, and real-time clock synchronization in cryptographic systems.
 
 ---
 
@@ -34,7 +34,7 @@ By moving execution from software to the Artix-7 FPGA fabric, this project demon
 ---
 
 ## ⚙️ System Architecture
-
+*The UART interface is used solely as a test and validation input mechanism and is not part of the cryptographic design itself.*
 The system operates as a continuous pipelined data path:
 
 ### 1. Input Interface (`UART_RX`)
@@ -101,6 +101,14 @@ This project was developed through an iterative engineering process, moving from
 
 ---
 
+⚠️ Disclaimer: This project is a hardware implementation study of cryptographic primitives designed for educational and research purposes. While it demonstrates the logic of Non-Linear Feedback Shift Registers (NLFSR) and Feistel Networks, it has not been audited for production-level security.
+
+---
+
 ## 🎥 Demonstration
 ![Comp 1](https://github.com/user-attachments/assets/81680fa6-209f-497b-b98d-d26a630c2d0d)
 
+![Comp 2](https://github.com/user-attachments/assets/834bc50d-6bb7-4a49-a1fb-326000c9bb4c)
+
+
+---
