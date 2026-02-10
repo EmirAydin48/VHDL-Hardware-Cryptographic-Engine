@@ -1,30 +1,35 @@
-# 🔐 FPGA-Based Hardware Cryptographic Engine
+Available Languages: [English](README.md) | [Türkçe](README_TR.md)
+
+# 🔐 FPGA-Based Hardware Cryptographic Engine (Educational)
 
 ![Status](https://img.shields.io/badge/Status-Completed-success)
 ![Tech](https://img.shields.io/badge/Language-VHDL-blue)
 ![Board](https://img.shields.io/badge/Hardware-Basys3-orange)
-![License](https://img.shields.io/badge/License-MIT-green)
+![Project Type](https://img.shields.io/badge/Project_Type-Academic_Research-yellow)
+![Security_Level](https://img.shields.io/badge/Security-Educational_Proof_of_Concept-red)
+
+---
 
 ## 📌 Overview
 
-This project is a high-speed, hardware-accelerated cryptographic engine implemented on the **Artix-7 FPGA**. It features a hybrid architecture that combines a **Non-Linear Feedback Shift Register (NLFSR)** for high-entropy key generation with a **Feistel Network** for reversible data permutation.
+This project focuses on the FPGA-based implementation of custom cryptographic primitives. The primary goal was to explore the hardware design challenges involved in translating theoretical cipher architectures—specifically Non-Linear Feedback Shift Registers (NLFSR) and Unbalanced Feistel Networks—into physical Register Transfer Level (RTL) logic.
 
-Unlike software-based encryption that consumes CPU cycles, this design performs encryption and decryption in real-time at the hardware level. It integrates an asynchronous **UART interface** for data ingestion and a custom **Time-Division Multiplexing (TDM)** driver for visualizing encrypted telemetry on 7-segment displays.
+By moving execution from software to the Artix-7 FPGA fabric, this project demonstrates the principles of hardware acceleration, pipeline parallelism, and real-time clock synchronization in cryptographic systems.
 
 ---
 
 ## 🛠️ Key Engineering Features
 
 * **🛡️ Hybrid Cryptographic Architecture**
-  * Combines the speed of a Stream Cipher with the structural integrity of a Block Cipher using an Unbalanced Feistel Network.
+  * Implemented a custom cipher that combines the speed of a Stream Cipher with the structural integrity of a Block Cipher using an Unbalanced Feistel Network structure.
 * **🎲 Non-Linear Key Generation**
-  * Utilizes a 7-bit **NLFSR** (Non-Linear Feedback Shift Register) with Boolean mixing functions to mitigate linear cryptanalysis attacks (e.g., Berlekamp-Massey).
+  * Designed a 7-bit NLFSR (Non-Linear Feedback Shift Register) with Boolean mixing functions to demonstrate logic-level mitigation against linear cryptanalysis.
 * **⚡ Asynchronous Clock Synchronization**
-  * Implements explicit clock-gating and buffering to safely synchronize 9600-baud asynchronous UART data with the 100MHz system clock domain.
+  * Implemented explicit clock-gating and buffering to safely synchronize 9600-baud asynchronous UART data with the 100MHz system clock domain.
 * **👁️ Multiplexed Telemetry Display**
-  * A custom hardware driver that uses **Time-Division Multiplexing** to display Hexadecimal ciphertext on 7-segment displays using a single shared bus.
+  * Developed a custom hardware driver using Time-Division Multiplexing (TDM) to visualize internal cipher states on 7-segment displays via a shared bus.
 * **🔄 Reversible Logic Core**
-  * Leverages the Feistel property ($A \oplus B \oplus B = A$) to use the exact same hardware logic gate array for both encryption and decryption modes.
+  * Leveraged the Feistel property ($A \oplus B \oplus B = A$) to utilize the exact same hardware logic gate array for both encryption and decryption modes.
 
 ---
 
@@ -97,5 +102,5 @@ This project was developed through an iterative engineering process, moving from
 ---
 
 ## 🎥 Demonstration
+![Comp 1](https://github.com/user-attachments/assets/81680fa6-209f-497b-b98d-d26a630c2d0d)
 
-[Insert a link to your demonstration video or GIF here]
