@@ -21,13 +21,13 @@ By mapping execution from software models to the Artix-7 FPGA fabric, this proje
 ## 🛠️ Key Engineering Features
 
 * **🛡️ Hybrid Cryptographic Architecture**
-  * Implemented a custom cipher that combines the speed of a Stream Cipher with the structural integrity of a Block Cipher using an Unbalanced Feistel Network structure.
+  * Combines a Linear Feedback Shift Register (LFSR) for pseudo-random stream generation with a Feistel Block Network to demonstrate structural encryption principles.
 * **🎲 Non-Linear Key Generation**
-  * Designed a 7-bit NLFSR (Non-Linear Feedback Shift Register) with Boolean mixing functions to demonstrate logic-level mitigation against linear cryptanalysis.
-* **⚡ Asynchronous Clock Synchronization**
-  * Implemented explicit clock-gating and buffering to safely synchronize 9600-baud asynchronous UART data with the 100MHz system clock domain.
+  * Implements a custom 7-bit NLFSR with Boolean Mixing Functions (AND/XOR) to increase algebraic complexity and resist simple linear analysis.
+* **⚡ Hardware Synchronization**
+  * Solves the "Clock Domain Crossing" problem between the asynchronous 9600-baud UART input and the 100MHz system clock using Finite State Machines (FSM) and Synchronous Clock Enables.
 * **👁️ Multiplexed Telemetry Display**
-  * Developed a custom hardware driver using Time-Division Multiplexing (TDM) to visualize internal cipher states on 7-segment displays via a shared bus.
+  * Features a custom Time-Division Multiplexing (TDM) driver to render encrypted ciphertext on 7-segment displays in real-time.
 * **🔄 Reversible Logic Core**
   * Leveraged the Feistel property ($A \oplus B \oplus B = A$) to utilize the exact same hardware logic gate array for both encryption and decryption modes.
 
@@ -68,10 +68,6 @@ Standard LFSRs are vulnerable to linear algebra attacks. I upgraded the key gene
 * **The Upgrade:** Instead of simple XOR taps, I introduced AND/OR gates into the feedback loop.
 * **Mathematical Consequence:** This increases the linear complexity of the keystream, making the cipher significantly harder to predict without knowing the initial seed state.
 
-#### 3. Hardware-Level Synchronization
-The project involves crossing clock domains (Async Serial $\to$ Sync FPGA).
-* **Solution:** I implemented a "Data Valid" flag system. The internal state machine remains idle until the UART module asserts `o_RX_DV`. The encryption logic then executes in a single 100MHz clock cycle, ensuring no data is dropped or processed twice.
-
 ---
 
 ## 📈 Design Evolution
@@ -84,7 +80,7 @@ This project was developed through an iterative engineering process, moving from
 | **II** | **Permutation** | Introduced a P-Box (Permutation Layer) to shuffle bit positions and break spatial correlation. |
 | **III** | **ASCII Scale-Up** | Expanded bus width to 7-bit to support full text encryption; added keyboard buffering. |
 | **IV** | **Non-Linear Core** | Replaced the linear generator with an NLFSR to resist linear cryptanalysis. |
-| **V** | **Feistel Net** | Migrated to a Feistel Block Architecture**, allowing for complex non-invertible mixing functions. |
+| **V** | **Feistel Net** | Migrated to a Feistel Block Architecture, allowing for complex non-invertible mixing functions. |
 | **VI** | **FPGA Port** | Synthesized the design to VHDL, integrated UART, and implemented Display Multiplexing. |
 
 ---
