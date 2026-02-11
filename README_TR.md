@@ -19,14 +19,14 @@ Yürütmenin yazılım modellerinden Artix-7 FPGA yapısına eşlenmesiyle, bu �
 
 ---
 
-## 🛠️ Temel Mühendislik Özellikleri
+## 🛠️ Temel Tasarım Özellikleri
 
 * **🛡️ Hibrit Kriptografik Mimari**
   * Akış şifrelerinin hız avantajını, Blok şifrelerin yapısal özellikleriyle birleştiren, Dengesiz Feistel Ağı tabanlı özel bir şifreleme yapısı uygulanmıştır.
 * **🎲 Doğrusal Olmayan Anahtar Üretimi**
   * Doğrusal kriptoanalize karşı mantık seviyesinde direnç göstermek amacıyla Boolean karışım fonksiyonları kullanan 7-bit NLFSR tasarlanmıştır.
-* **⚡ Asenkron Saat Senkronizasyonu**
-  * 9600 baud hızındaki asenkron UART verisinin 100 MHz sistem saat alanına güvenli şekilde aktarılması için açık saat kapılama ve tamponlama mekanizmaları uygulanmıştır.
+* **⚡ Donanım Senkronizasyonu**
+  * 9600 baud hızındaki asenkron UART verisinin 100 MHz sistem saat alanına güvenli şekilde aktarılması (Clock Domain Crossing) için Sonlu Durum Makineleri (FSM) ve Eşzamanlı Saat Yetkilendirme (Synchronous Clock Enables) mekanizmaları uygulanmıştır.
 * **👁️ Çoklanmış Telemetri Görselleştirmesi**
   * Dahili şifreleme durumlarını, paylaşımlı bir veri yolu üzerinden 7-segment göstergelerde sunmak için Zaman Bölüşümlü Çoklama (TDM) kullanan özel bir donanım sürücüsü geliştirilmiştir.
 * **🔄 Tersinir Mantık Çekirdeği**
@@ -74,14 +74,6 @@ Standart LFSR yapıları doğrusal cebir tabanlı saldırılara açıktır. Bu p
 
 * **Yükseltme:** XOR tap’leri yerine AND/OR kapıları içeren geri besleme yolları kullanılmıştır
 * **Matematiksel Sonuç:** Üretilen anahtar dizisinin doğrusal karmaşıklığı artırılmış, başlangıç durumu bilinmeden tahmin edilmesi zorlaştırılmıştır
-
----
-
-#### 3. Donanım Seviyesinde Senkronizasyon
-Proje, asenkron seri haberleşmeden senkron FPGA saat alanına geçiş içermektedir.
-
-* **Çözüm:** “Data Valid” bayrak sistemi uygulanmıştır
-* **Çalışma:** UART modülü `o_RX_DV` sinyalini yükselttiğinde şifreleme mantığı tek bir 100 MHz saat çevriminde çalışır; veri kaybı veya çift işleme engellenir
 
 ---
 
