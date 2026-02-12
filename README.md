@@ -10,7 +10,7 @@
 
 ---
 
-## 📌 Overview
+## Overview
 
 This project focuses on the FPGA-based implementation of custom cryptographic primitives. The primary goal was to research the basic principle behind modern day data encryption and decryption.
 
@@ -18,18 +18,18 @@ By mapping execution from software models to the Artix-7 FPGA fabric, this proje
 
 ---
 
-## 🛠️ Key Engineering Features
+## Key Engineering Features
 
-* **🛡️ Hybrid Cryptographic Architecture**
+* **Hybrid Cryptographic Architecture**
   * Combines a Linear Feedback Shift Register (LFSR) for pseudo-random stream generation with a Feistel Block Network to demonstrate structural encryption principles.
-* **🎲 Non-Linear Key Generation**
+* **Non-Linear Key Generation**
   * Implements a custom 7-bit NLFSR with Boolean Mixing Functions (AND/XOR) to increase algebraic complexity and resist simple linear analysis.
-* **🔄 Reversible Logic Core**
+* **Reversible Logic Core**
   * Leveraged the Feistel property ($A \oplus B \oplus B = A$) to utilize the exact same hardware logic gate array for both encryption and decryption modes.
 
 ---
 
-## ⚙️ System Architecture
+## System Architecture
 *The UART interface is used solely as a test and validation input mechanism and is not part of the cryptographic design itself.*
 
 The system operates as a continuous pipelined data path:
@@ -50,7 +50,7 @@ The system operates as a continuous pipelined data path:
 
 ---
 
-## 💻 Technical Implementation Details
+## Technical Implementation Details
 
 #### 1. The Feistel Network (Diffusion)
 To allow for complex, non-reversible mixing functions while maintaining the ability to decrypt, I implemented a Feistel structure.
@@ -66,7 +66,7 @@ Standard LFSRs are vulnerable to linear algebra attacks. I upgraded the key gene
 
 ---
 
-## 📈 Design Evolution
+## Design Evolution
 
 This project was developed through an iterative engineering process, moving from theoretical logic to physical hardware implementation.
 
@@ -81,7 +81,7 @@ This project was developed through an iterative engineering process, moving from
 
 ---
 
-## 🔌 Hardware Pinout (Basys 3)
+## Hardware Pinout (Basys 3)
 
 | Component | Signal Name | FPGA Pin | Description |
 | :--- | :--- | :--- | :--- |
@@ -94,7 +94,7 @@ This project was developed through an iterative engineering process, moving from
 
 ---
 
-⚠️ Disclaimer: This project is a hardware implementation study of cryptographic primitives designed for educational and research purposes. While it demonstrates the logic of Non-Linear Feedback Shift Registers (NLFSR) and Feistel Networks, it has not been audited for production-level security.
+**Disclaimer:** This project is a hardware implementation study of cryptographic primitives designed for educational and research purposes. While it demonstrates the logic of Non-Linear Feedback Shift Registers (NLFSR) and Feistel Networks, it has not been audited for production-level security.
 
 ---
 
