@@ -75,7 +75,7 @@ This project was developed through an iterative engineering process, moving from
 | **I** | **Linear Stream** | Validated basic XOR encryption using a 4-bit Linear Feedback Shift Register (LFSR). |
 | **II** | **Permutation** | Introduced a P-Box (Permutation Layer) to shuffle bit positions and break spatial correlation. |
 | **III** | **ASCII Scale-Up** | Expanded bus width to 7-bit to support full text encryption; added keyboard buffering. |
-| **IV** | **Non-Linear Core** | Replaced the linear generator with an NLFSR to resist linear cryptanalysis. |
+| **IV** | **Non-Linear Core** | Replaced the linear generator with an NLFSR. |
 | **V** | **Feistel Net** | Migrated to a Feistel Block Architecture, allowing for complex non-invertible mixing functions. |
 | **VI** | **FPGA Port** | Synthesized the design to VHDL, integrated UART, and implemented Display Multiplexing. |
 
