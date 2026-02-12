@@ -1,4 +1,4 @@
-Available Languages: [English](README.md) | [Türkçe](README_TR.md)
+**Available Languages:** [English](README.md) | [Türkçe](README_TR.md)
 
 # 🔐 FPGA-Based Hardware Cryptographic Engine (Educational)
 
