@@ -13,7 +13,7 @@ Mevcut Diller: [English](README.md) | [Türkçe](README_TR.md)
 
 ## 📌 Genel Bakış
 
-Bu proje, özel kriptografik ilkelere dayalı bir sistemin FPGA üzerinde gerçekleştirilmesine odaklanmaktadır. Projenin temel amacı; özellikle Doğrusal Olmayan Geri Beslemeli Kaydırma Yazmaçları (NLFSR) ve Dengesiz Feistel Ağları gibi teorik şifreleme mimarilerinin, Register Transfer Level (RTL) seviyesinde fiziksel donanım mantığına dönüştürülmesi sırasında karşılaşılan donanımsal tasarım zorluklarını incelemektir.
+Bu proje, özel kriptografik ilkelere dayalı bir sistemin FPGA üzerinde gerçekleştirilmesine odaklanmaktadır. Projenin temel amacı; özellikle Doğrusal Olmayan Geri Beslemeli Kaydırma Yazmaçları (NLFSR) ve Dengesiz Feistel Ağları gibi teorik şifreleme mimarilerinin nasıl çalıştığını araştırmaktır.
 
 Yürütmenin yazılım modellerinden Artix-7 FPGA yapısına eşlenmesiyle, bu çalışma kriptografik sistemlerde donanım hızlandırma, boru hatlı paralellik ve gerçek zamanlı saat senkronizasyonu ilkelerini göstermektedir.
 
@@ -25,10 +25,6 @@ Yürütmenin yazılım modellerinden Artix-7 FPGA yapısına eşlenmesiyle, bu �
   * Akış şifrelerinin hız avantajını, Blok şifrelerin yapısal özellikleriyle birleştiren, Dengesiz Feistel Ağı tabanlı özel bir şifreleme yapısı uygulanmıştır.
 * **🎲 Doğrusal Olmayan Anahtar Üretimi**
   * Doğrusal kriptoanalize karşı mantık seviyesinde direnç göstermek amacıyla Boolean karışım fonksiyonları kullanan 7-bit NLFSR tasarlanmıştır.
-* **⚡ Donanım Senkronizasyonu**
-  * 9600 baud hızındaki asenkron UART verisinin 100 MHz sistem saat alanına güvenli şekilde aktarılması (Clock Domain Crossing) için Sonlu Durum Makineleri (FSM) ve Eşzamanlı Saat Yetkilendirme (Synchronous Clock Enables) mekanizmaları uygulanmıştır.
-* **👁️ Çoklanmış Telemetri Görselleştirmesi**
-  * Dahili şifreleme durumlarını, paylaşımlı bir veri yolu üzerinden 7-segment göstergelerde sunmak için Zaman Bölüşümlü Çoklama (TDM) kullanan özel bir donanım sürücüsü geliştirilmiştir.
 * **🔄 Tersinir Mantık Çekirdeği**
   * Feistel özelliği  
    ($A \oplus B \oplus B = A$)
