@@ -12,7 +12,7 @@ Available Languages: [English](README.md) | [Türkçe](README_TR.md)
 
 ## 📌 Overview
 
-This project focuses on the FPGA-based implementation of custom cryptographic primitives. The primary goal was to explore the hardware design challenges involved in translating theoretical cipher architectures—specifically Non-Linear Feedback Shift Registers (NLFSR) and Unbalanced Feistel Networks—into physical Register Transfer Level (RTL) logic.
+This project focuses on the FPGA-based implementation of custom cryptographic primitives. The primary goal was to research the basic principle behind modern day data encryption and decryption.
 
 By mapping execution from software models to the Artix-7 FPGA fabric, this project demonstrates the principles of hardware acceleration, pipeline parallelism, and real-time clock synchronization in cryptographic systems.
 
@@ -24,10 +24,6 @@ By mapping execution from software models to the Artix-7 FPGA fabric, this proje
   * Combines a Linear Feedback Shift Register (LFSR) for pseudo-random stream generation with a Feistel Block Network to demonstrate structural encryption principles.
 * **🎲 Non-Linear Key Generation**
   * Implements a custom 7-bit NLFSR with Boolean Mixing Functions (AND/XOR) to increase algebraic complexity and resist simple linear analysis.
-* **⚡ Hardware Synchronization**
-  * Solves the "Clock Domain Crossing" problem between the asynchronous 9600-baud UART input and the 100MHz system clock using Finite State Machines (FSM) and Synchronous Clock Enables.
-* **👁️ Multiplexed Telemetry Display**
-  * Features a custom Time-Division Multiplexing (TDM) driver to render encrypted ciphertext on 7-segment displays in real-time.
 * **🔄 Reversible Logic Core**
   * Leveraged the Feistel property ($A \oplus B \oplus B = A$) to utilize the exact same hardware logic gate array for both encryption and decryption modes.
 
