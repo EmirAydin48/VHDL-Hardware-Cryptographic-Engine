@@ -11,7 +11,7 @@
 
 ---
 
-## 📌 Genel Bakış
+## Genel Bakış
 
 Bu proje, özel kriptografik ilkelere dayalı bir sistemin FPGA üzerinde gerçekleştirilmesine odaklanmaktadır. Projenin temel amacı; özellikle Doğrusal Olmayan Geri Beslemeli Kaydırma Yazmaçları (NLFSR) ve Dengesiz Feistel Ağları gibi teorik şifreleme mimarilerinin nasıl çalıştığını araştırmaktır.
 
@@ -19,20 +19,20 @@ Yürütmenin yazılım modellerinden Artix-7 FPGA yapısına eşlenmesiyle, bu �
 
 ---
 
-## 🛠️ Temel Tasarım Özellikleri
+## Temel Tasarım Özellikleri
 
-* **🛡️ Hibrit Kriptografik Mimari**
+* **Hibrit Kriptografik Mimari**
   * Akış şifrelerinin hız avantajını, Blok şifrelerin yapısal özellikleriyle birleştiren, Dengesiz Feistel Ağı tabanlı özel bir şifreleme yapısı uygulanmıştır.
-* **🎲 Doğrusal Olmayan Anahtar Üretimi**
+* **Doğrusal Olmayan Anahtar Üretimi**
   * Doğrusal kriptoanalize karşı mantık seviyesinde direnç göstermek amacıyla Boolean karışım fonksiyonları kullanan 7-bit NLFSR tasarlanmıştır.
-* **🔄 Tersinir Mantık Çekirdeği**
+* **Tersinir Mantık Çekirdeği**
   * Feistel özelliği  
    ($A \oplus B \oplus B = A$)
     sayesinde, aynı donanım mantık yapısı hem şifreleme hem de çözme modlarında kullanılabilmektedir.
 
 ---
 
-## ⚙️ Sistem Mimarisi
+## Sistem Mimarisi
 *UART arayüzü yalnızca test ve doğrulama amacıyla kullanılmakta olup, kriptografik tasarımın bir parçası değildir.*
 
 Sistem, sürekli çalışan boru hatlı bir veri yolu yapısına sahiptir:
@@ -53,7 +53,7 @@ Sistem, sürekli çalışan boru hatlı bir veri yolu yapısına sahiptir:
 
 ---
 
-## 💻 Teknik Gerçekleme Detayları
+## Teknik Gerçekleme Detayları
 
 #### 1. Feistel Ağı (Difüzyon)
 Tersinirliği koruyarak karmaşık ve terslenemez karıştırma fonksiyonlarının kullanılabilmesi için Feistel yapısı tercih edilmiştir.
@@ -73,7 +73,7 @@ Standart LFSR yapıları doğrusal cebir tabanlı saldırılara açıktır. Bu p
 
 ---
 
-## 📈 Tasarım Evrimi
+## Tasarım Evrimi
 
 Proje, teorik mantık tasarımından fiziksel donanım uygulamasına doğru aşamalı olarak geliştirilmiştir.
 
@@ -101,8 +101,7 @@ Proje, teorik mantık tasarımından fiziksel donanım uygulamasına doğru aşa
 
 ---
 
-⚠️ **Uyarı:**  
-Bu proje, kriptografik ilkelerin donanım seviyesinde uygulanmasını inceleyen araştırma amaçlı bir çalışmadır. NLFSR ve Feistel ağlarının mantığını göstermektedir ancak üretim seviyesinde güvenlik için denetlenmiş veya sertifikalandırılmış değildir.
+**Uyarı:** Bu proje, kriptografik ilkelerin donanım seviyesinde uygulanmasını inceleyen araştırma amaçlı bir çalışmadır. NLFSR ve Feistel ağlarının mantığını göstermektedir ancak üretim seviyesinde güvenlik için denetlenmiş veya sertifikalandırılmış değildir.
 
 ---
 
