@@ -1,4 +1,4 @@
-Mevcut Diller: [English](README.md) | [Türkçe](README_TR.md)
+**Mevcut Diller:** [English](README.md) | [Türkçe](README_TR.md)
 
 
 # 🔐 FPGA Tabanlı Donanımsal Kriptografik Motor (Eğitimsel)
